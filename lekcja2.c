@@ -133,8 +133,8 @@ else
 */
 ///PETLE PIERWSZE
 
-int i,n,m;
-scanf("%d %d",&n,&m);
+int i,n,m,k;
+scanf("%d %d %d",&n,&m,&k);
 for(i=n;i<m;i=i+n)
 {
     printf("%d \n",i);
@@ -144,7 +144,12 @@ for(i=1;i<=m;i++)
 {
     printf("%d \n",i*n);
 }
-
+printf("\n\n\n");
+for(i=1;i*n<=k;i++)
+{
+    if(i*n>m && i*n<k)
+        printf("%d \n",i*n);
+}
 
 
 return 0;}
