@@ -150,6 +150,12 @@ for(i=1;i*n<=k;i++)
     if(i*n>m && i*n<k)
         printf("%d \n",i*n);
 }
+int i,a,b=1;
+scanf("%d",&a);
+for(i=1;i<=a;i++)
+    b=b*i;
+printf("%d",b);
+
 
 
 return 0;}
