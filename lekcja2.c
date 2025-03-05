@@ -154,7 +154,12 @@ int i,a,b=1;
 scanf("%d",&a);
 for(i=1;i<=a;i++)
     b=b*i;
+printf("%d \n \n \n \n",b);
+b=0;
+for(i=0;i<=a;i++)
+    b=b+i*i;
 printf("%d",b);
+
 
 
 
