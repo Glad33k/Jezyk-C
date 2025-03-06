@@ -130,7 +130,7 @@ else
 {
     printf("Nie tworza ciagu");
 }
-*/
+
 ///PETLE PIERWSZE
 
 int i,n,m,k;
@@ -150,6 +150,8 @@ for(i=1;i*n<=k;i++)
     if(i*n>m && i*n<k)
         printf("%d \n",i*n);
 }
+
+
 int i,a,b=1;
 scanf("%d",&a);
 for(i=1;i<=a;i++)
@@ -160,8 +162,126 @@ for(i=0;i<=a;i++)
     b=b+i*i;
 printf("%d",b);
 
+///1.4.6
+int i,a,b=1;
+scanf("%d", &a);
+if(a<=2)
+    printf("Musi byc wieksza od 2! \n");
+else {
+    for(i=2;i<=a;i=i+2)
+    {
+        b=i*b;
+    }
+    printf("%d",b);
+}
+//Zadanie dodatkowe
+int i,a,b=1;
+scanf("%d", &a);
+if(a<=2)
+    printf("Musi byc wieksza od 2! \n");
+else {
+    for(i=a;i>0;i=i-2)
+    {
+        b=i*b;
+    }
+    printf("%d",b);
+}
+///1.4.7
+int i,a,b,c=1;
+printf("Podaj 2 liczby, 1 musi byc mniejsza od 2: \n");
+scanf("%d %d",&a,&b);
+for(a;a<=b;a++)
+   c=c*a;
+printf("%d",c);
+///1.4.8
 
+int i,a,b=0,c=1,d;
+scanf("%d",&a);
+if(a==0)
+{
+    printf("%d",b);
+}
+else if(a==1)
+{
+    printf("%d",c);
+}
+else{
+for(i=2;i<=a;i++)
+{
+    d=b+c;
+    b=c;
+    c=d;
+}
+printf("%d",d);
+}
+///1.4.9
+int i,n,m,max=0;
+scanf("%d %d",&n,&m);
+for(i=1;i<=n;i++)
+if(n%i==0 && m%i==0)
+{
+    printf("Dzielnik obu liczb to : %d \n",i);
+        max=i;
+}
+printf("Najwiekszy wspolny dzielnik to : %d \n",max);
 
+///1.4.10
+int a,c,i;
+double b;
+scanf("%d",&a);
+for(i=0;i<=sqrt(a);i++)
+        c=i;
+printf("%d",c);
 
+///Wypisywanie liczb 1
+int a,b,c,i=0;
+scanf("%d",&a);
+if(a>=2)
+    printf("2\n");
+for(b=3;b<a;b++){
+    i=0;
+for(c=2;c<b;c++){
+    if(b%c==0)
+    i++;
+}
+    if(i==0)
+    printf("%d \n",b);
+}
+///Dodatkowe doskonale liczby
+int i,n,m,max=0,a,b,c;
+scanf("%d",&n);
+for(b=2;b<n;b++){
+    max=0;
+for(c=1;c<b;c++){
+if(b%c==0 )
+{
+    max=max+c;
+}}
+if(b==max)
+{
+    printf("liczba doskonala to: %d \n",b);
+}
+}*/
+///1.4.11
+int a,b,c,d,delta;
+scanf("%d %d %d %d",&a,&b,&c,&d);
+printf("%f*x^2+%f*x+%f>%f \n",abs(a),b,c,d);
+c=c-d;
+printf("%f*x^2+%f*x+%f>0 \n",abs(a),b,c);
+a=abs(a)
+delta=b*b-4*a*c;
+if(delta<0)
+{
+    printf("Brak rozwiazan rzeczywistych");
+}
+else if(delta==0)
+{
+    printf("Rownanie ma jedno rozwiazanie x=%f",-b/(2*a));
+}
+else
+{
+    printf("Rownanie ma 2 rozwaizanie x1=%f, x2=%f",(-b-sqrt(delta))/2*a,(-b+sqrt(delta))/2*a);
+}
+///Nieskonczone jeszcze jest
 return 0;}
 
