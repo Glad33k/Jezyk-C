@@ -262,26 +262,31 @@ if(b==max)
     printf("liczba doskonala to: %d \n",b);
 }
 }*/
-///1.4.11
-int a,b,c,d,delta;
-scanf("%d %d %d %d",&a,&b,&c,&d);
-printf("%f*x^2+%f*x+%f>%f \n",abs(a),b,c,d);
-c=c-d;
-printf("%f*x^2+%f*x+%f>0 \n",abs(a),b,c);
-a=abs(a)
+///1.4.11(A)
+double a,b,c,de,delta,x1,x2;
+printf("Podaj wspolczynniki nierownosci:\n");
+scanf("%lf %lf %lf %lf",&a,&b,&c,&de);
+a=abs(a);
+printf("%f*x^2+%f*x+%f>%f \n",a,b,c,de);
+c=c-de;
 delta=b*b-4*a*c;
 if(delta<0)
 {
-    printf("Brak rozwiazan rzeczywistych");
+    printf("Rownanie to ma 1 rozwiazanie: x=%f",ceil(-b/(2*a)));
 }
 else if(delta==0)
 {
-    printf("Rownanie ma jedno rozwiazanie x=%f",-b/(2*a));
+    printf("Rownanie ma jedno rozwiazanie x=%f",1+floor(-b/(2*a)));
 }
 else
 {
-    printf("Rownanie ma 2 rozwaizanie x1=%f, x2=%f",(-b-sqrt(delta))/2*a,(-b+sqrt(delta))/2*a);
+    x1=(-b-sqrt(delta))/(2*a);
+    x2=(-b+sqrt(delta))/(2*a);
+    printf("%f %f \n",x1,x2);
+    if(x1>=0 && x1>=x2)
+        printf("Rownanie ma 2 rozwiazania, z czego najmniejsza liczba calkowita jest: %f \n",1+floor(x1));
+    else if(x2>=0 && x2>x1)
+        printf("Rownanie ma 2 rozwiazania, z czego najmniejsza liczba calkowita jest: %f \n",1+floor(x2));
 }
-///Nieskonczone jeszcze jest
 return 0;}
 
