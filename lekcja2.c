@@ -261,32 +261,88 @@ if(b==max)
 {
     printf("liczba doskonala to: %d \n",b);
 }
-}*/
+}
 ///1.4.11(A)
-double a,b,c,de,delta,x1,x2;
+double a,b,c,d,odpo=0;
 printf("Podaj wspolczynniki nierownosci:\n");
-scanf("%lf %lf %lf %lf",&a,&b,&c,&de);
+scanf("%lf %lf %lf %lf",&a,&b,&c,&d);
 a=abs(a);
-printf("%f*x^2+%f*x+%f>%f \n",a,b,c,de);
-c=c-de;
-delta=b*b-4*a*c;
-if(delta<0)
+printf("%f*x^2+%f*x+%f>%f \n",a,b,c,d);
+for(int x=0;a*x*x+b*x+c<=d;x++)
+    odpo++;
+printf("Najmniejsza liczba spelniajaca to rownanie to: %f ",odpo);
+
+///1.4.11(B)
+double a,b,c,odpo=0;
+printf("Podaj wspolczynniki nierownosci:\n");
+scanf("%lf %lf %lf",&a,&b,&c);
+printf("5*x^2+%f*x+%f<%f \n",a,b,c);
+for(int x=0;5*x*x+a*x+b<c;x++)
+    odpo=x;
+printf("Najwieksza liczba spelniajaca to rownanie to: %f ",odpo);
+
+///1.4.11(C)
+double a,b,c,odpo=0;
+printf("Podaj wspolczynniki nierownosci:\n");
+scanf("%lf %lf %lf",&a,&b,&c);
+printf("5*x^2+%f*x+%f<=%f \n",a,b,c);
+for(int x=0;5*x*x+a*x+b<=c;x++)
+    odpo=x;
+printf("Najwieksza liczba spelniajaca to rownanie to: %f ",odpo);
+
+///1.4.12
+int n=1;
+printf("Podaj liczbe: \n");
+int a,b,i,m,max=0,l=0,s=0;
+scanf("%d",&n);
+for(i=2;i<n;i++)
 {
-    printf("Rownanie to ma 1 rozwiazanie: x=%f",ceil(-b/(2*a)));
+    a=n;
+    b=i;
+    while(a*b!=0)
+    {
+        if(a<b)
+        {
+            b=b%a;
+        }
+        else
+        {
+            a=a%b;
+        }
+    }
+    if((a==1)||(b==1))
+    {
+        s=s+i;
+    }
 }
-else if(delta==0)
+printf("Suma wszystkich liczb wzglednie pierwszych to: %d",s);
+
+///1.4.13
+int n,suma=1;
+int c=1;
+printf("Podaj liczbe: \n");
+scanf("%d",&n);
+for(int x=1;x<=n;x++)
 {
-    printf("Rownanie ma jedno rozwiazanie x=%f",1+floor(-b/(2*a)));
+        c=c*x;
+    suma=suma+c;
 }
-else
+printf("Suma silni wynosi : %d",suma);
+*/
+///1.4.14
+int n,a,b;
+
+printf("Podaj liczbe: \n");
+scanf("%d",&n);
+for(int a=1;a<n;a++)
 {
-    x1=(-b-sqrt(delta))/(2*a);
-    x2=(-b+sqrt(delta))/(2*a);
-    printf("%f %f \n",x1,x2);
-    if(x1>=0 && x1>=x2)
-        printf("Rownanie ma 2 rozwiazania, z czego najmniejsza liczba calkowita jest: %f \n",1+floor(x1));
-    else if(x2>=0 && x2>x1)
-        printf("Rownanie ma 2 rozwiazania, z czego najmniejsza liczba calkowita jest: %f \n",1+floor(x2));
+    for(int b=a;b<n;b++)
+    for(int c=b;c<n;c++)
+    {
+    if(a*a+b*b==c*c)
+    printf("To sa trojki pitagorejskie: %d,%d,%d \n",a,b,c);
+    }
 }
+
 return 0;}
 
