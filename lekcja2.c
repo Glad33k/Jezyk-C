@@ -343,7 +343,7 @@ for(int a=1;a<n;a++)
     printf("To sa trojki pitagorejskie: %d,%d,%d \n",a,b,c);
     }
 }
-*/
+
 
 ///Zadanie Dodatkowe 
 int a=1,b=1;
@@ -355,5 +355,19 @@ for(a=1;a<1000;a++)
     if(a*b==n*n && (a+1)*(b+1)==m*m)
     printf("To sa te pary: %d,%d \n",a,b);
 
+*/
+///Zadanie dodatkowe
+float a;
+int b;
+float c=0;
+scanf("%f",&a);
+for(int x=0;x<=a;x++)
+    b=x;
+
+    c=b+0.5;
+if(a>=c)
+    printf("%d \n",b+1);
+else
+    printf("%d \n",b);
 return 0;}
 
