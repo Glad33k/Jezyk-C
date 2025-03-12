@@ -328,7 +328,7 @@ for(int x=1;x<=n;x++)
     suma=suma+c;
 }
 printf("Suma silni wynosi : %d",suma);
-*/
+
 ///1.4.14
 int n,a,b;
 
@@ -343,6 +343,17 @@ for(int a=1;a<n;a++)
     printf("To sa trojki pitagorejskie: %d,%d,%d \n",a,b,c);
     }
 }
+*/
+
+///Zadanie Dodatkowe 
+int a=1,b=1;
+
+for(a=1;a<1000;a++)
+    for(b=a+1;b<1000;b++)
+    for(int n=a;n<b/3;n++)
+    for(int m=n;m<b/3;m++)
+    if(a*b==n*n && (a+1)*(b+1)==m*m)
+    printf("To sa te pary: %d,%d \n",a,b);
 
 return 0;}
 
