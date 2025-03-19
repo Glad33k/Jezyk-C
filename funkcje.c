@@ -2,6 +2,8 @@
 #include <stdlib.h>
 #include <math.h>
 
+
+
 int modul(int n)
 {
     if(n<0)
@@ -98,8 +100,51 @@ int sumapod(int n)
     return s;
 }
 
+void kwlicz(int n)
+{
+    int i=1;
+    int j=n;
+    for(int i=1;i<=j;i++)
+        for(int j=n;j>=i;j--)
+        if(i*i+j*j==n)
+        printf("%d, \n",i,j);
+}
+int licz()
+{
+    static int zz=0;
+    zz++;
+    printf("%d \n",zz);
+}
+int lllicz(int n)
+{
+    static int zz=0;
+    zz=zz+n;
+    printf("suma to %d \n",zz);
+    return n;
+}
+
+void pslos()
+{
+   static float a=0.6;
+        a=1-(a*a);
+        printf("%lf \n",a);
+
+}
+int silniar(int n)
+{
+    if(n<=1)
+        return 1;
+    return n*silniar(n-1);
+}
+
+
+
+
+
+
 int main()
 {
+
     int n,m;
     printf("Podaj liczbe: \n");
     scanf("%d %d",&n,&m);
@@ -125,6 +170,21 @@ int main()
     ///2.2.10
     ///printf("Suma liczb wzglednie pierwszych z %d to %d ",n,sumazgpierw(n));
     ///2.2.11
-    printf("Suma podlog pierwiastkow zwyklych z %d to %d",n,sumapod(n));
+    ///printf("Suma podlog pierwiastkow zwyklych z %d to %d",n,sumapod(n));
+    ///2.2.13
+    ///kwlicz(n);
+    ///2.2.17
+    ///licz();
+    ///licz();
+    ///licz();
+    ///2.2.18
+    /// pslos();
+    ///pslos();
+    ///2.2.19
+    ///printf(" wynik == %d",lllicz(n));
+    ///printf(" wynik =%d",lllicz(m));
+    ///2.2.20
+    printf("silnia = %d",silniar(n));
+
     return 0;
 }
