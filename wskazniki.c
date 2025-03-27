@@ -111,6 +111,10 @@ void przepisz2(const int * a,int * const b)
 {
     *b=*a;
 }
+double srednia(int *a, int b)
+{
+    return sqrt(*a*b);
+}
 
 int main()
 {
@@ -235,7 +239,7 @@ int main()
     printf("stala %d, zmienona %d ",a,b);
     przepisz(wska,wskb);
     printf("stala %d, zmieniona %d",a,b);
-    */
+
     ///3.2.16
    const int a=15;
     int b=45;
@@ -244,5 +248,10 @@ int main()
     printf("stala %d, zmienona %d ",a,b);
     przepisz2(wska,wskb);
     printf("stala %d, zmieniona %d",a,b);
+    */
+    int a=40;
+    int b=30;
+    int *wsk_a=&a;
+    printf("Srednia z 2 liczb to %lf",srednia(wsk_a,b));
     return 0;
 }
