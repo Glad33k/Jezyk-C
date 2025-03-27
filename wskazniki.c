@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <stdbool.h>
 
 int mniejsze(int * a, int * b){
     if(*a<*b)
@@ -58,6 +58,60 @@ int dodaj_piec(int * a)
 int * alokujcalkowita(){
     return malloc(sizeof(int));
 }
+
+double * alokujdouble(){
+    return malloc(sizeof(double));
+}
+
+float * alokujfloat(){
+    return malloc(sizeof(float));
+}
+
+int * alokujblok(unsigned int n){
+    return malloc(n * sizeof(int));
+}
+
+double * alokujblokdabla(unsigned int n){
+    return malloc(n*sizeof(double));
+}
+
+double funkcjapom(int n)
+{
+    return n*7.54;
+}
+
+
+double funkcja(double (*funkcjapom)(int x),int y)
+{
+    return funkcjapom(y);
+}
+
+bool funkcjaporownanie(int (*fun1)(int x),int (*fun2)(int y),unsigned int n)
+{
+    for(int i=0;i<=n;i++)
+    {
+        if(fun1(i)!=fun2(i))
+            return false;
+    }
+    return true;
+}
+int funkcjapom1(int x)
+{
+    return x-1;
+}
+int funkcjapom2(int x)
+{
+    return (x-1)*(x-1)*(x-1);
+}
+void przepisz(const int * a,int * b)
+{
+    *b=*a;
+}
+void przepisz2(const int * a,int * const b)
+{
+    *b=*a;
+}
+
 int main()
 {
     /*
@@ -125,15 +179,70 @@ int main()
     int a=7;
     printf("%d \n",dodaj_piec(&a));
     printf("%d",a);
-    */
+
     ///3.2.9
     int *a=alokujcalkowita();
-    printf("adres : %d \n",a);
+    printf("adres : %p \n",a);
     printf("Wartosc zmiennej pod tym adresem to %d \n",*a);
     *a=15;
-    printf("adres to %d \n",a);
+    printf("adres to %p \n",a);
     printf("Wartosc to %d \n",*a);
 
+    ///3.2.10
+    double *a=alokujdouble();
+    printf("adres : %p \n",a);
+    printf("Wartosc zmiennej pod tym adresem to %lf \n",*a);
+    *a=15.76;
+    printf("adres to %p \n",a);
+    printf("Wartosc to %lf \n",*a);
 
+    ///Float
+    float *a=alokujfloat();
+    printf("adres : %p \n",a);
+    printf("Wartosc zmiennej pod tym adresem to %f \n",*a);
+    *a=15.58;
+    printf("adres to %p \n",a);
+    printf("Wartosc to %f \n",*a);
+
+    ///3.2.11
+    int n=12;
+    printf("wskaznik poczatku zarezerwowanego bloku pamieci to %p",alokujblok(n));
+
+    ///3.2.12
+    int n=12;
+    printf("Wskaznik poczatku zarezerowanego bloku pamieci to %p",alokujblokdabla(n));
+
+    ///3.2.13
+    int x=5;
+    double (*wskaznikdofunkcji)(int);
+    wskaznikdofunkcji=&funkcjapom;
+    printf("%p\n",wskaznikdofunkcji);
+    printf("%lf\n",funkcja(wskaznikdofunkcji,x));
+
+    ///3.2.14
+    int x=2;
+    int (*wskaznikdofunkcji1)(int);
+    int (*wskaznikdofunkcji2)(int);
+    wskaznikdofunkcji1=&funkcjapom1;
+    wskaznikdofunkcji2=&funkcjapom2;
+    printf("Czy takie same %d \n",funkcjaporownanie(wskaznikdofunkcji1,wskaznikdofunkcji2,x));
+
+    ///3.2.15
+    const int a=15;
+    int b=45;
+    const int *wska=&a;
+    int *wskb=&b;
+    printf("stala %d, zmienona %d ",a,b);
+    przepisz(wska,wskb);
+    printf("stala %d, zmieniona %d",a,b);
+    */
+    ///3.2.16
+   const int a=15;
+    int b=45;
+    const int *wska=&a;
+    int * const wskb=&b;
+    printf("stala %d, zmienona %d ",a,b);
+    przepisz2(wska,wskb);
+    printf("stala %d, zmieniona %d",a,b);
     return 0;
 }
