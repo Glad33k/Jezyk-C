@@ -285,7 +285,160 @@ void dodatkowe (int *tab)
 }
 
 
+int zad10a(unsigned int n, int *tab)
+{
+    int max=tab[0];
+    for(int i=1;i<n;i++)
+    {
+        if(max<tab[i])
+            max=tab[i];
+    }
 
+    return max;
+}
+
+int zad10b(unsigned int n, int *tab)
+{
+    int min=tab[0];
+    for(int i=1;i<n;i++)
+    {
+        if(min>tab[i])
+            min=tab[i];
+    }
+
+    return min;
+}
+
+
+int zad10c(unsigned int n, int *tab)
+{
+    int ind=0;
+    int max=tab[0];
+    for(int i=1;i<n;i++)
+    {
+        if(max<tab[i])
+        {
+            max=tab[i];
+            ind=i;
+    }
+    }
+    return ind;
+}
+int zad10e(unsigned int n, int *tab)
+{
+    int max=abs(tab[0]);
+    for(int i=1;i<n;i++)
+    {
+        tab[i]=abs(tab[i]);
+        if(max<tab[i])
+            max=tab[i];
+    }
+
+    return  max;
+}
+
+
+int zad10d(unsigned int n, int *tab)
+{
+    int ind=0;
+    for(int i=1;i<n;i++)
+    {
+        if(tab[ind]>=tab[i])
+            ind=i;
+    }
+
+    return ind;
+}
+
+int zad10f(unsigned int n,  int *tab)
+{
+    int ind=0;
+    for(int i=1;i<n;i++)
+    {
+        tab[i]=abs(tab[i]);
+        if(tab[ind]<=tab[i])
+            ind=i;
+    }
+
+    return  ind;
+}
+
+double zad11(unsigned int n, double *tab, double *tab2)
+{
+    double il=0;
+    for(int i=0;i<n;i++)
+    {
+        il=tab[i]*tab2[i]+il;
+    }
+    return il;
+}
+
+void zad12a(unsigned int n, int * tab)
+{
+   int pom=0;
+   for(int i=0;i<n/2;i++)
+   {
+       pom=tab[i];
+       tab[i]=tab[n-i-1];
+       tab[n-i-1]=pom;
+
+   }
+    wypisz(n,tab);
+}
+
+double zaddod(unsigned int n, double *tab)
+{
+    double il=0;
+    for(int i=0;i<n;i++)
+    {
+        il=tab[i]*tab[i]+il;
+    }
+    return sqrt(il);
+}
+
+void zad12b(unsigned int n, int * tab)
+{
+   int pom=0;
+   tab[n]=tab[0];
+   for(int i=0;i<n;i++)
+   {
+       pom=tab[i];
+       tab[i]=tab[i+1];
+       tab[i+1]=pom;
+
+   }
+    wypisz(n,tab);
+}
+
+void zad12c(unsigned int n, int * tab)
+{
+    int pom=tab[n-1];
+
+    for(int i=n-1;i>0;i--)
+   {
+       tab[i]=tab[i-1];
+   }
+   tab[0]=pom;
+    wypisz(n,tab);
+}
+
+
+void zad12d(unsigned int n, int * tab)
+{
+        int pom=0;
+
+    for(int i=0;i<n;i++)
+   {
+       if(tab[i]<tab[i+1])
+       {
+        pom=tab[i];
+        tab[i]=tab[i+1];
+        tab[i+1]=pom;
+       }
+   }
+
+    wypisz(n,tab);
+}
 
 
 
@@ -373,5 +526,38 @@ int main()
     dodatkowe(tabd);
      ///4.2.10
     printf("\n\n CW4_2_10\n\n");
+    int n=10;
+    int tab10a[]={1,56,1,-354,52,1,65,2,65,100};
+    printf("Najwiekszy element w tablicy to %d \n",zad10a(n,tab10a));
+    printf("Najmniejszy element w tablicy to %d \n",zad10b(n,tab10a));
+    printf("Indeks najwiekszego elementu w tablicy to %d \n",zad10c(n,tab10a));
+    printf("Indeks najmniejszego elementu w tablicy to %d \n",zad10d(n,tab10a));
+    printf("Wartosc najwiekszego elementu o wartosci bezwglednej w tablicy to %d \n",zad10e(n,tab10a));
+    printf("Indeks elementu o najwiekszej wartosci bezwglednej w tablicy to %d \n",zad10f(n,tab10a));
+    ///4.2.11
+    printf("\n\n CW4_2_11\n\n");
+
+    double tab11a[]={1,4.5,3.72,15,9};
+    double tab11b[]={2,54,4.32,9,10};
+    printf("Iloczyn skalarny to %f \n",zad11(5,tab11a,tab11b));
+
+     ///DODATKOWE
+    printf("\n\n CWDODATKOWE\n\n");
+    double tabdod[]={5,4,1,2};
+    printf("%f",zaddod(4,tabdod));
+
+    ///4.2.12
+    printf("\n\n CW4_2_12\n\n");
+    int tab12a[]={1,2,3,4,5,6,7,8,9,10,11};
+    int tab12b[]={3,5,2,8,7,1,6};
+    int tab12c[]={3,5,2,8,7,1,6};
+    int tab12d[]={3,5,2,8,7,1,6};
+    int tab12e[]={1,2,3,4,5,6,7,8,9,10,11};
+    zad12a(11,tab12a);
+    zad12b(7,tab12b);
+    zad12c(7,tab12c);
+    zad12d(7,tab12d);
+
+
     return 0;
 }
