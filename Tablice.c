@@ -425,21 +425,70 @@ void zad12c(unsigned int n, int * tab)
 
 void zad12d(unsigned int n, int * tab)
 {
-        int pom=0;
+        int pom,j;
 
-    for(int i=0;i<n;i++)
+    for(int i=0;i<n-1;i++)
    {
-       if(tab[i]<tab[i+1])
-       {
-        pom=tab[i];
-        tab[i]=tab[i+1];
-        tab[i+1]=pom;
-       }
+       j=zad10c(n-i,tab);
+       pom=tab[n-i-1];
+       tab[n-i-1]=tab[j];
+       tab[j]=pom;
    }
 
     wypisz(n,tab);
 }
 
+
+void babelkowe(unsigned int n,int * tab)
+{
+    int pom,j,i;
+    for(i=n;i>0;i--)
+    {
+        for(j=0;j<i-1;j++)
+        {
+            if(tab[j]>tab[j+1])
+            {
+                pom=tab[j];
+                tab[j]=tab[j+1];
+                tab[j+1]=pom;
+            }
+        }
+
+
+    }
+    wypisz(n,tab);
+}
+
+int * zad13(unsigned int n)
+{
+   return malloc(n*sizeof(int));
+}
+
+double * zad14(unsigned int n)
+{
+   return malloc(n*sizeof(double));
+}
+
+void zwolnij(int * tab)
+{
+    free(tab);
+}
+void zwolnijdab(double* tab)
+{
+    free(tab);
+}
+
+double* zad17(unsigned int n,double *tab)
+{
+    double tab1[n];
+    double (*wsk)[n];
+    int i;
+
+    for(int i=0;i<n;i++)
+        tab1[i]=tab[i];
+wsk=&tab1;
+return wsk;
+}
 
 
 int main()
@@ -553,10 +602,34 @@ int main()
     int tab12c[]={3,5,2,8,7,1,6};
     int tab12d[]={3,5,2,8,7,1,6};
     int tab12e[]={1,2,3,4,5,6,7,8,9,10,11};
+    int tabbab[]={3,5,2,8,7,1,6};
     zad12a(11,tab12a);
     zad12b(7,tab12b);
     zad12c(7,tab12c);
     zad12d(7,tab12d);
+    printf("\n\n Sortowanie Babelkowe: \n\n");
+    babelkowe(7,tabbab);
+
+    ///4.2.13
+    printf("\n\n CW4_2_13\n\n");
+    printf("Wartosc wskaznika elementu dynamicznej tablicy to %p",zad13(5));
+    ///4.2.14
+    printf("\n\n CW4_2_14\n\n");
+    printf("Wartosc wskaznika elementu dynamicznej tablicy to %p",zad14(5));
+    ///4.2.15
+   /// printf("\n\n CW4_2_15\n\n");
+    ///int tab15[]={1,2,3,4,5,6,7,7,7};
+    ///zwolnij(tab15);
+    ///4.2.16
+    ///printf("\n\n CW4_2_16\n\n");
+    ///double tab16[]={1,2,3,4,5,6,7,7,7};
+    ///zwolnijdab(tab16);
+
+     ///4.2.17
+    printf("\n\n CW4_2_17\n\n");
+    double tab17[]={1,2,3,4,5};
+    printf("Wskaznik do skopiowanej tablicy to: %p",zad17(5,tab17));
+
 
 
     return 0;
