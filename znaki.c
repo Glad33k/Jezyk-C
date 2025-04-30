@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-
+#include <stdbool.h>
 
 void wypisz(char *napis)
 {
@@ -144,12 +144,83 @@ void deszyfrowanie(char *napis)
     int i;
     for(i=0;napis[i]!=0;i++)
     {
+
             if((napis[i]>'c') && (napis[i]<='z'))
             napis[i]=napis[i]-3;
             else if((napis[i]>='a') && (napis[i]<='c'))
             napis[i]=napis[i]+23;
     }
     wypisz(napis);
+}
+
+
+void wytnij(int n, int m, char *napis)
+{
+    int j=dlugosc(napis);
+    if(j+1>m)
+    {
+        for(int i=0;i+m<j;i++)
+        {
+        napis[n+i]=napis[m+i+1];
+        }
+    }
+    else if((n<j) && (j+1<=m))
+    {
+        napis[n]=0;
+    }
+
+    wypisz(napis);
+}
+
+
+bool porownajprzes(char *napis1, char* napis2,int n)
+{
+    int i;
+    for(i=0;(napis1[i]!=0) && (napis2[i]!=0);i++)
+    if(napis1[n+i]!=napis2[i])
+    {
+        return false;
+    }
+    if(napis2[i]==0)
+        return true;
+    else
+        return false;
+}
+
+void wytnij2(char *napis, char *napis2)
+{
+    int i,dl;
+    for(dl=0;napis2[dl]!=0;dl++){}
+    for(i=0;napis[i]!=0;i++)
+    {
+        if(porownajprzes(napis,napis2,i))
+        {
+            wytnij(napis,i,i+dl-1);
+            return;
+        }
+    }
+
+}
+
+
+
+void wytnijzw(char *napis,char *napis2)
+{
+    int i,j;
+    int znaki[256];
+    for(i=0;napis2[i]!=0;i++)
+    {
+        znaki[napis2[i]]=1;
+    }
+    for(i=0,j=0;napis[i]!=0;i++)
+    {
+        if(znaki[napis[i]]==0)
+        {
+            napis[j]=napis[i];
+            j++;
+        }
+        napis[j]=0;
+    }
 }
 
 int main()
@@ -213,5 +284,25 @@ int main()
     char napisik1[50]="nrorvbc";
     deszyfrowanie(napisik1);
 
+    ///Cw5.2.9
+    printf("\n\n CW5_2_9\n\n");
+
+    char napisik123[50]="Informatyka";
+    wytnij(3,6,napisik123);
+
+
+    ///Cw5.2.10
+
+    /// NIOE DZIALA
+     printf("\n\n CW5_2_10\n\n");
+     char napisik1234[50]="banan";
+     char napisik1235[50]="ban";
+    wytnij2(napisik1235,napisik1234);
+    wypisz(napisik1234);
+
+
+
+    ///Cw5.2.11
+     printf("\n\n CW5_2_11\n\n");
     return 0;
 }
