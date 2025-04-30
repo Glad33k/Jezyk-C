@@ -219,8 +219,9 @@ void wytnijzw(char *napis,char *napis2)
             napis[j]=napis[i];
             j++;
         }
-        napis[j]=0;
+    
     }
+    napis[j]=0;
 }
 
 int main()
