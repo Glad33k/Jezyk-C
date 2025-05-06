@@ -165,7 +165,8 @@ void wytnij(int n, int m, char *napis)
         napis[n+i]=napis[m+i+1];
         }
     }
-    else if((n<j)&&(j+1<=m))
+    else
+        if((n<j)&&(j+1<=m))
     {
         napis[n]=0;
     }
@@ -177,7 +178,7 @@ bool porownajcz(char *nap1, char*nap2, int n)
 {
     int i;
     for(i=0;(nap1[i]!=0)&&(nap2[i]!=0);i++)
-        if(nap1[n+1]!=nap2[i])
+        if(nap1[n+i]!=nap2[i])
             return false;
     if(nap2[i]==0)
         return true;
@@ -289,7 +290,7 @@ int main()
 
     ///Cw5.2.10
 
-    ///NIE DZIALA DALEJ (SKOPIOWANE Z KRZACZKOWSKIEGO)
+    
      printf("\n\n CW5_2_10\n\n");
      char napisik1234[50]="Informatyka";
      char napisik1235[50]="for";
