@@ -156,58 +156,51 @@ void deszyfrowanie(char *napis)
 
 void wytnij(int n, int m, char *napis)
 {
-    int j=dlugosc(napis);
+    int j,i;
+    for(j=0;napis[j]!=0;j++);
     if(j+1>m)
     {
-        for(int i=0;i+m<j;i++)
+        for(i=0;i+m<j;i++)
         {
         napis[n+i]=napis[m+i+1];
         }
     }
-    else if((n<j) && (j+1<=m))
+    else if((n<j)&&(j+1<=m))
     {
         napis[n]=0;
     }
 
-    wypisz(napis);
 }
 
 
-bool porownajprzes(char *napis1, char* napis2,int n)
+bool porownajcz(char *nap1, char*nap2, int n)
 {
     int i;
-    for(i=0;(napis1[i]!=0) && (napis2[i]!=0);i++)
-    if(napis1[n+i]!=napis2[i])
-    {
-        return false;
-    }
-    if(napis2[i]==0)
+    for(i=0;(nap1[i]!=0)&&(nap2[i]!=0);i++)
+        if(nap1[n+1]!=nap2[i])
+            return false;
+    if(nap2[i]==0)
         return true;
     else
         return false;
 }
 
-void wytnij2(char *napis, char *napis2)
+void wytnij2(char *nap1, char *nap2)
 {
     int i,dl;
-    for(dl=0;napis2[dl]!=0;dl++){}
-    for(i=0;napis[i]!=0;i++)
+    for(dl=0;nap2[dl]!=0;dl++);
+    for(i=0;nap1[i]!=0;i++)
+        if(porownajcz(nap1,nap2,i))
     {
-        if(porownajprzes(napis,napis2,i))
-        {
-            wytnij(napis,i,i+dl-1);
-            return;
-        }
+        wytnij(i,i+dl-1,nap1);
+        return;
     }
-
 }
-
-
 
 void wytnijzw(char *napis,char *napis2)
 {
     int i,j;
-    int znaki[256];
+    int znaki[256]={};
     for(i=0;napis2[i]!=0;i++)
     {
         znaki[napis2[i]]=1;
@@ -216,13 +209,15 @@ void wytnijzw(char *napis,char *napis2)
     {
         if(znaki[napis[i]]==0)
         {
+            if(j<i)
             napis[j]=napis[i];
             j++;
         }
-    
+
     }
     napis[j]=0;
 }
+
 
 int main()
 {
@@ -294,16 +289,19 @@ int main()
 
     ///Cw5.2.10
 
-    /// NIOE DZIALA
+    ///NIE DZIALA DALEJ (SKOPIOWANE Z KRZACZKOWSKIEGO)
      printf("\n\n CW5_2_10\n\n");
-     char napisik1234[50]="banan";
-     char napisik1235[50]="ban";
-    wytnij2(napisik1235,napisik1234);
+     char napisik1234[50]="Informatyka";
+     char napisik1235[50]="for";
+    wytnij2(napisik1234,napisik1235);
     wypisz(napisik1234);
+
 
 
 
     ///Cw5.2.11
      printf("\n\n CW5_2_11\n\n");
+     wytnijzw(napisik1234,napisik1235);
+     wypisz(napisik1234);
     return 0;
 }
