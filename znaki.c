@@ -369,6 +369,7 @@ int main()
     ///Cw5.2.22
      printf("\n\n CW5_2_22\n\n");
      printf("%s",sklej2("dawid ","jest ","super"));
+        
       ///Cw5.2.26
      printf("\n\n CW5_2_26\n\n");
      char napis22[50]="dawid";
