@@ -1,7 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
+#include <string.h>
+#include <wchar.h>
 void wypisz(char *napis)
 {
 
@@ -219,6 +220,50 @@ void wytnijzw(char *napis,char *napis2)
     napis[j]=0;
 }
 
+void wczytaj(char *napis)
+{
+    scanf("%s",napis);
+    napis=napis+'\0';
+}
+
+char *pojemnik(char **napis, int n)
+{
+    char *pom=napis[0];
+    for(int i=1;i<n;i++)
+    {
+        if(porownajslownik(pom,napis[i])==0)
+            pom=napis[i];
+    }
+    return pom;
+}
+
+char *godzina(int godz,int min,int sek)
+{
+    char *wynik=malloc(9*sizeof(char));
+    sprintf(wynik,"%02d:%02d:%02d",godz,min,sek);
+    return wynik;
+}
+
+
+char *sklej2(char * napis1, char* napis2, char* napis3)
+{
+    char *wynik=malloc((strlen(napis1)+strlen(napis2)+strlen(napis3)+1)*sizeof(char));
+    strcpy(wynik,napis1);
+    strcat(wynik,napis2);
+    strcat(wynik,napis3);
+
+    return wynik;
+}
+
+
+void maleduze(char *napis)
+{
+    int i;
+    for(i=0;napis[i]!=0;i++)
+    {
+        napis[i]=towupper(napis[i]);
+    }
+}
 
 int main()
 {
@@ -290,7 +335,7 @@ int main()
 
     ///Cw5.2.10
 
-    
+
      printf("\n\n CW5_2_10\n\n");
      char napisik1234[50]="Informatyka";
      char napisik1235[50]="for";
@@ -304,5 +349,31 @@ int main()
      printf("\n\n CW5_2_11\n\n");
      wytnijzw(napisik1234,napisik1235);
      wypisz(napisik1234);
+
+    ///Cw5.2.16
+     printf("\n\n CW5_2_16\n\n");
+     char napis16[50];
+    wczytaj(napis16);
+    wypisz(napis16);
+
+    ///Cw5.2.18
+     printf("\n\n CW5_2_18\n\n");
+     char **text[][6]={"czarek","jarek","adam","towarek","marek","bartek"};
+     printf("%s",pojemnik(text,6));
+
+    ///Cw5.2.20
+     printf("\n\n CW5_2_20\n\n");
+     printf("%s",godzina(3,3,10));
+
+
+    ///Cw5.2.22
+     printf("\n\n CW5_2_22\n\n");
+     printf("%s",sklej2("dawid ","jest ","super"));
+      ///Cw5.2.26
+     printf("\n\n CW5_2_26\n\n");
+     char napis22[50]="dawid";
+     maleduze(napis22);
+     printf("%s",napis22);
+
     return 0;
 }
