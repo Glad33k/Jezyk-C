@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
@@ -268,6 +269,109 @@ float sredniawierszawynik(unsigned int n,unsigned int m, int **t)
 
 return ostateczny;
 }
+
+
+void przepisz(int **t1,int **t2,unsigned int n, unsigned int m)
+{
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++)
+        t2[i][j]=t1[i][j];
+}
+
+
+void zamiana(int **t1,int **t2,unsigned int n, unsigned int m)
+{
+    int pom;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m;j++)
+        {
+            pom=t1[i][j];
+            t1[i][j]=t2[i][j];
+            t2[i][j]=pom;
+        }
+}
+
+void zamianawiersz(int **t1,unsigned int n, unsigned int m)
+{
+    int pom;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m/2;j++)
+        {
+            pom=t1[i][j];
+            t1[i][j]=t1[i][m-j-1];
+            t1[i][m-j-1]=pom;
+        }
+}
+
+
+void zamianawiersz2(unsigned int n,unsigned int m, int t[][m])
+{
+    int pom;
+    for(int i=0;i<n;i++)
+        for(int j=0;j<m/2;j++)
+        {
+            pom=t[i][j];
+            t[i][j]=t[i][m-j-1];
+            t[i][m-j-1]=pom;
+        }
+}
+
+
+void zamienwiersze_wdol(int **t,unsigned int n, unsigned int m)
+{
+    int pom;
+    for(int j=0;j<m;j++)
+        {
+            pom=t[n-1][j];
+        for(int i=n-1;i>0;i--)
+        {
+            t[i][j]=t[i-1][j];
+
+        }
+            t[0][j]=pom;
+        }
+}
+
+
+void zamianakolumny_wprawo(int **t,unsigned int n,unsigned int m)
+{
+    int pom;
+    for(int i=0;i<n;i++)
+    {
+        pom=t[i][m-1];
+        for(int j=m-1;j>0;j--)
+        {
+            t[i][j]=t[i][j-1];
+        }
+        t[i][0]=pom;
+    }
+}
+
+void tarcza(unsigned int n)
+{
+    int **tab=alokuj(n,n);
+    int licznik=1;
+    for(int i=0;i<n/2;i++)
+        {
+
+        for(int j=0;j<n/2;j++)
+        {
+            tab[i][j]=i+licznik;
+            tab[i][n-1-j]=i+licznik;
+            tab[n-1-i][j]=i+licznik;
+            tab[n-1-i][n-1-j]=i+licznik;
+
+
+        }
+        licznik++;
+
+        }
+
+
+        wypisz(tab,n,n);
+}
+
+
 int main()
 {
      ///Cw6.2.1
@@ -345,8 +449,62 @@ int main()
     printf("\n\n CW6_2_17\n\n");
 
     int **taaaab=alokuj(3,4);
-    wczytaj(taaaab,3,4);
-    wypisz(taaaab,3,4);
-    printf("Wiersz z najwieksza srednia to : %f",sredniawierszawynik(3,4,taaaab));
-    return 0;
+    //wczytaj(taaaab,3,4);
+    //wypisz(taaaab,3,4);
+    //printf("Wiersz z najwieksza srednia to : %f",sredniawierszawynik(3,4,taaaab));
+
+
+     /////Cw6.2.19
+    printf("\n\n CW6_2_19\n\n");
+    int **tab19=alokuj(3,3);
+    int **tab191=alokuj(3,3);
+    //wczytaj(tab19,3,3);
+    //przepisz(tab19,tab191,3,3);
+    //wypisz(tab191,3,3);
+
+
+    /////Cw6.2.20
+    printf("\n\n CW6_2_20\n\n");
+    //wczytaj(tab19,3,3);
+    //wczytaj(tab191,3,3);
+    //zamiana(tab19,tab191,3,3);
+    //wypisz(tab19,3,3);
+    //wypisz(tab191,3,3);
+
+
+    /////Cw6.2.21
+    printf("\n\n CW6_2_21\n\n");
+        int **tab20=alokuj(4,4);
+       // wczytaj(tab20,4,4);
+        //zamianawiersz(tab20,4,4);
+        //wypisz(tab20,4,4);
+
+    /////Cw6.2.22
+    printf("\n\n CW6_2_22\n\n");
+    int tab22[3][3];
+    //wczytaj2(3,3,tab22);
+    //zamianawiersz2(3,3,tab22);
+    //wypisz2(3,3,tab22);
+
+
+    /////Cw6.2.23
+    printf("\n\n CW6_2_23\n\n");
+    int **tab23=alokuj(3,3);
+    //wczytaj(tab23,3,3);
+    //zamienwiersze_wdol(tab23,3,3);
+    //wypisz(tab23,3,3);
+
+    /////Cw6.2.24
+    printf("\n\n CW6_2_24\n\n");
+    //zamianakolumny_wprawo(tab23,3,3);
+    //wypisz(tab23,3,3);
+
+
+    ////zad dodatkowe
+    printf("\n\n CWDODATKOWE\n\n");
+    tarcza(4);
+
+
+
+        return 0;
 }
