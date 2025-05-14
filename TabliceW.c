@@ -350,22 +350,25 @@ void zamianakolumny_wprawo(int **t,unsigned int n,unsigned int m)
 void tarcza(unsigned int n)
 {
     int **tab=alokuj(n,n);
-    int licznik=1;
-    for(int i=0;i<n/2;i++)
-        {
 
-        for(int j=0;j<n/2;j++)
-        {
-            tab[i][j]=i+licznik;
-            tab[i][n-1-j]=i+licznik;
-            tab[n-1-i][j]=i+licznik;
-            tab[n-1-i][n-1-j]=i+licznik;
+    int war = (n + 1) / 2; // Liczba warstw w tarczy
 
+    // Wypełnianie macierzy
+    for (int w = 0; w < war; w++) {
+        int liczba = w + 1;
 
+        // Górny i dolny wiersz warstwy
+        for (int i = w; i < n - w; i++) {
+            tab[w][i] = liczba; // Górny wiersz
+            tab[n - w - 1][i] = liczba; // Dolny wiersz
         }
-        licznik++;
 
+        // Lewa i prawa kolumna warstwy
+        for (int i = w + 1; i < n - w - 1; i++) {
+            tab[i][w] = liczba; // Lewa kolumna
+            tab[i][n - w - 1] = liczba; // Prawa kolumna
         }
+    }
 
 
         wypisz(tab,n,n);
@@ -502,7 +505,7 @@ int main()
 
     ////zad dodatkowe
     printf("\n\n CWDODATKOWE\n\n");
-    tarcza(4);
+    tarcza(7);
 
 
 
