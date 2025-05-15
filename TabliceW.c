@@ -464,7 +464,7 @@ void  mnozeniekwadrat1(int **t,int **t2,int **t3,unsigned int n)
 int wyznacznik(int **t, int n)
 {
     if(n==1)
-        return t[n][n];
+        return t[0][0];
     if(n==2)
         return t[0][0]*t[1][1]-t[0][1]*t[1][0];
     else
