@@ -463,13 +463,15 @@ void  mnozeniekwadrat1(int **t,int **t2,int **t3,unsigned int n)
 
 int wyznacznik(int **t, int n)
 {
-    for(int i=0;i<n;i++)
+    if(n==1)
+        return t[n][n];
+    if(n==2)
+        return t[0][0]*t[1][1]-t[0][1]*t[1][0];
+    else
     {
-        for(int j=0;j<n;j++)
-        {
-            
-        }
+        
     }
+    
 }
 
 int main()
