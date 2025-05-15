@@ -375,6 +375,103 @@ void tarcza(unsigned int n)
 }
 
 
+
+
+void transpozycja(int **t, unsigned int n)
+{
+    int pom;
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<i;j++)
+        {
+            pom=t[i][j];
+            t[i][j]=t[j][i];
+            t[j][i]=pom;
+        }
+    }
+}
+
+
+
+
+int **transpozycjapro(int **t, unsigned int n, unsigned int m)
+{
+    int **t2=alokuj(m,n);
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<m;j++)
+        {
+            t2[j][i]=t[i][j];
+        }
+    }
+
+    return t2;
+}
+
+
+
+int ** dodawanie(int **t, int**t2,unsigned int n)
+{
+    int **t3=alokuj(n,n);
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            t3[i][j]=t[i][j]+t2[i][j];
+        }
+    }
+    return t3;
+}
+
+
+int  ** mnozeniekwadrat(int **t,int **t2,unsigned int n)
+{
+    int k;
+    int **t3=alokuj(n,n);
+     for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            t3[i][j]=0;
+            for(k=0;k<n;k++)
+            {
+                t3[i][j]=t3[i][j]+t[i][k]*t2[k][j];
+            }
+        }
+    }
+    return t3;
+}
+
+
+void  mnozeniekwadrat1(int **t,int **t2,int **t3,unsigned int n)
+{
+    int k;
+    
+     for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            t3[i][j]=0;
+            for(k=0;k<n;k++)
+            {
+                t3[i][j]=t3[i][j]+t[i][k]*t2[k][j];
+            }
+        }
+    }
+}
+
+
+int wyznacznik(int **t, int n)
+{
+    for(int i=0;i<n;i++)
+    {
+        for(int j=0;j<n;j++)
+        {
+            
+        }
+    }
+}
+
 int main()
 {
      ///Cw6.2.1
@@ -505,7 +602,54 @@ int main()
 
     ////zad dodatkowe
     printf("\n\n CWDODATKOWE\n\n");
-    tarcza(7);
+    //tarcza(7);
+
+    /////Cw6.2.25
+    printf("\n\n CW6_2_25\n\n");
+
+    //int **tab25=alokuj(4,4);
+    //wczytaj(tab25,4,4);
+    //wypisz(tab25,4,4);
+    //transpozycja(tab25,4);
+    //wypisz(tab25,4,4);
+
+    /////Cw6.2.26
+    printf("\n\n CW6_2_26\n\n");
+     int **tab26=alokuj(3,4);
+    //wczytaj(tab26,3,4);
+    //int **tab262=transpozycjapro(tab26,3,4);
+    //wypisz(tab262,4,3);
+
+
+    /////Cw6.2.30
+    printf("\n\n CW6_2_30\n\n");
+    int **t30=alokuj(3,3);
+    int **t301=alokuj(3,3);
+    //wczytaj(t30,3,3);
+    //wczytaj(t301,3,3);
+    //int **t300=dodawanie(t30,t301,3);
+    //wypisz(t300,3,3);
+
+    /////Cw6.2.32
+    printf("\n\n CW6_2_32\n\n");
+    //wczytaj(t30,3,3);
+    //wczytaj(t301,3,3);
+    //int **odp=mnozeniekwadrat(t30,t301,3);
+    //wypisz(odp,3,3);
+
+    /////Cw6.2.33
+    printf("\n\n CW6_2_33\n\n");
+    //mnozeniekwadrat1(t30,t301,t32,n);
+    
+    
+    /////Cw6.2.36
+    printf("\n\n CW6_2_36\n\n");
+
+    ///liczenie wyznacznika naszym sposobem w kompie
+
+
+
+
 
 
 
