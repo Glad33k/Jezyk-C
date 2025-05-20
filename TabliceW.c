@@ -2,7 +2,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <stdbool.h>
-
+#include <math.h>
 
 int ** alokuj(int n, int m)
 {
@@ -353,7 +353,7 @@ void tarcza(unsigned int n)
 
     int war = (n + 1) / 2; // Liczba warstw w tarczy
 
-    // Wypełnianie macierzy
+    // Wype³nianie macierzy
     for (int w = 0; w < war; w++) {
         int liczba = w + 1;
 
@@ -446,7 +446,7 @@ int  ** mnozeniekwadrat(int **t,int **t2,unsigned int n)
 void  mnozeniekwadrat1(int **t,int **t2,int **t3,unsigned int n)
 {
     int k;
-    
+
      for(int i=0;i<n;i++)
     {
         for(int j=0;j<n;j++)
@@ -460,18 +460,37 @@ void  mnozeniekwadrat1(int **t,int **t2,int **t3,unsigned int n)
     }
 }
 
+void wyzpom(int n,int m, int **t1, int **t2)
+{
+    int i1,i2,j1,j2;
+    for(i1=0,i2=0;i1<n;i1++)
+    {
+        if(i1!=m)
+        {
+            for(j1=1,j2=0;j1<n;j1++,j2++)
+                t2[i2][j2]=t1[i1][j1];
+            i2++;
+        }
+    }
+}
 
 int wyznacznik(int **t, int n)
 {
+    int suma;
+    int **nowy;
     if(n==1)
         return t[0][0];
-    if(n==2)
-        return t[0][0]*t[1][1]-t[0][1]*t[1][0];
-    else
-    {
-        
-    }
-    
+        suma=0;
+        nowy=alokuj(n-1,n-1);
+        for(int i=0;i<n;i++)
+        {
+            wyzpom(n,i,t,nowy);
+            if(i%2==0)
+                suma+=t[i][0]*wyznacznik(nowy,n-1);
+            else
+                suma-=t[i][0]*wyznacznik(nowy,n-1);
+                          }
+    return suma;
 }
 
 int main()
@@ -617,8 +636,8 @@ int main()
 
     /////Cw6.2.26
     printf("\n\n CW6_2_26\n\n");
-     int **tab26=alokuj(3,4);
-    //wczytaj(tab26,3,4);
+     int **tab26=alokuj(3,3);
+    wczytaj(tab26,3,3);
     //int **tab262=transpozycjapro(tab26,3,4);
     //wypisz(tab262,4,3);
 
@@ -642,14 +661,14 @@ int main()
     /////Cw6.2.33
     printf("\n\n CW6_2_33\n\n");
     //mnozeniekwadrat1(t30,t301,t32,n);
-    
-    
+
+
     /////Cw6.2.36
     printf("\n\n CW6_2_36\n\n");
 
     ///liczenie wyznacznika naszym sposobem w kompie
 
-
+    printf("%d",wyznacznik(tab26,3));
 
 
 
