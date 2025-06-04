@@ -135,7 +135,7 @@ void wyczysc(struct element* lista)
 }
 
 
-struct element *dodajnapoczatek(struct element*lista, int a)
+struct element *dodajnapoczatek(struct element* lista, int a)
 {
     struct element *wsk=malloc(sizeof(struct element));
     wsk->i=a;
@@ -144,7 +144,7 @@ struct element *dodajnapoczatek(struct element*lista, int a)
 };
 
 
-struct element *dodajnakoniec(struct element *lista, int a)
+struct element *dodajnakoniec(struct element* lista, int a)
 {
     struct element *wsk;
     if(lista==NULL)
@@ -154,7 +154,7 @@ struct element *dodajnakoniec(struct element *lista, int a)
     else
     {
         wsk=lista;
-        while(wsk->next!=NULL);
+        while(wsk->next!=NULL)
         {
             wsk=wsk->next;
         }
@@ -178,6 +178,158 @@ void wypiszlista(struct element *lista)
     printf("\n");
 }
 
+struct element * dodajodpowiednio(struct element* lista, struct element* elem, int a)
+{
+    struct element *wsk=malloc(sizeof(struct element));
+    wsk->i=a;
+    if(elem==NULL)
+        {wsk->next=lista;
+        lista=wsk;
+        }
+    else
+    {
+        wsk->next=elem->next;
+        elem->next=wsk;
+    }
+    return lista;
+};
+
+struct element * znajdz(struct element * lista, int a)
+{
+    while((lista!=NULL)&&(lista->i=a))
+    {
+        lista=lista->next;
+    }
+    return lista;
+};
+
+
+struct element *usun(struct element * lista, int a)
+{
+    struct element *wsk, *wsk2;
+    if(lista=NULL)
+        return lista;
+    wsk=lista;
+    while(lista->i=a)
+    {
+        lista=lista->next;
+        free(wsk);
+    }
+    while((wsk->next->i!=a)&&(wsk->next!=NULL))
+    {
+        wsk=wsk->next;
+    }
+    if(wsk->next!=NULL)
+    {
+        wsk2=wsk->next;
+        wsk->next=wsk2->next;
+        free(wsk2);
+    }
+    return lista;
+};
+
+struct element *usunwybrany(struct element * lista, struct element * elem)
+{
+    struct element *wsk,*wsk2;
+    if(lista=NULL)
+        return lista;
+    wsk=lista;
+    if(lista==elem)
+    {
+        lista=lista->next;
+        free(wsk);
+        return lista;
+    }
+    while((wsk->next!=NULL)&&(wsk->next!=elem))
+        wsk=wsk->next;
+        if(wsk->next!=NULL)
+        {
+            wsk2=wsk->next;
+            wsk->next=wsk2->next;
+            free(wsk2);
+        }
+        return lista;
+    
+};
+
+
+struct element * usunwybrany2(struct element *lista, struct element *elem)
+{
+    struct element *wsk;
+    if(lista=NULL)
+        return lista;
+    if(lista==elem)
+    {
+        wsk=lista;
+        lista=lista->next;
+        }
+    else if(elem->next==NULL)
+            return lista;
+    else
+    {
+        wsk=elem->next;
+        elem->next=wsk->next;
+        free(wsk);
+        return lista;
+    }
+    
+
+};
+
+
+struct element *utworzzglowa()
+{
+    struct element *wsk=malloc(sizeof(struct element));
+    wsk->next=NULL;
+    return wsk;
+};
+
+void wyczysczglowa(struct element * lista)
+{
+    struct element *wsk=lista->next;
+    lista=wsk;
+    while(lista!=NULL)
+    {
+        lista=lista->next;
+        free(wsk);
+        wsk=lista;
+    }
+}
+
+void dodajnapoczatekzglowa(struct element *lista, int a)
+{
+    struct element *wsk=malloc(sizeof(struct element));
+    wsk->i=a;
+    wsk->next=lista->next;
+    lista->next=wsk;
+}
+
+void dodajnakonieczglowa(struct element *lista, int a)
+{
+    struct element *wsk=lista;
+    while(wsk->next!=NULL)
+    {
+        wsk=wsk->next;
+    }
+    wsk->next=malloc(sizeof(struct element));
+    wsk=wsk->next;
+    wsk->i=a;
+    wsk->next=NULL;
+}
+
+
+void dodajodpowiedniozglowa (struct element * lista, struct element * elem,  int a)
+{
+    struct element *wsk=malloc(sizeof(struct element));
+    wsk->i=a;
+    if(elem!=NULL)
+        {wsk->next=elem->next;
+        elem->next=wsk;
+        }
+        
+    
+    return lista;
+}
 
 int main()
 {
@@ -263,24 +415,49 @@ int main()
     //printf("%p\n",Y.i);
     //printf("%p\n",Y.u);
 
-
     ///7.3.1 i 2
     printf("\n\n CW7_3_1\n\n");
 
     ///lista bez glowy
     ///Cw nie mam pojecia ktore juz bo sie zgubilem
     struct element *lista=utworz();
-    lista=dodajnakoniec(lista,4);
-    wypiszlista(lista);
-    lista=dodajnakoniec(lista,15);
-    wypiszlista(lista);
-    lista=dodajnakoniec(lista,3);
-    wypiszlista(lista);
-    lista=dodajnakoniec(lista,8);
-    wypiszlista(lista);
-    lista=dodajnakoniec(lista,10);
-    wypiszlista(lista);
+    //lista=dodajnakoniec(lista,4);
+    //wypiszlista(lista);
+    //lista=dodajnakoniec(lista,15);
+    //wypiszlista(lista);
+    //lista=dodajnakoniec(lista,3);
+    //wypiszlista(lista);
+    //lista=dodajnakoniec(lista,8);
+    //wypiszlista(lista);
+    //lista=dodajnakoniec(lista,10);
+    //wypiszlista(lista);
     lista=dodajnapoczatek(lista,6);
     wypiszlista(lista);
+    lista=dodajnakoniec(lista,1);
+    wypiszlista(lista);
+    ///7.3.5
+    printf("\n\n CW7_3_5\n\n");
+    //dodajodpowiednio
+    ///7.3.6
+    printf("\n\n CW7_3_6\n\n");
+    ///znajdz
+    
+    ///7.3.7
+    printf("\n\n CW7_3_7\n\n");
+    //usun
+    
+    ///7.3.8
+    printf("\n\n CW7_3_8\n\n");
+    //usunwybrany
+    
+    ///7.3.9
+    printf("\n\n CW7_3_9\n\n");
+    
+    ///Z GLOWOM TERAZ BEDZIE
+    
+    ///7.3.10
+    printf("\n\n CW7_3_10 i 11 i 12 i 13 i 14 tez xD\n\n");
+    
+    
     return 0;
 }
