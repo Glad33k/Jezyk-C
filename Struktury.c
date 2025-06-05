@@ -1,7 +1,8 @@
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
-
+#include <stdbool.h>
 
 struct trojkat
 {
@@ -207,10 +208,10 @@ struct element * znajdz(struct element * lista, int a)
 struct element *usun(struct element * lista, int a)
 {
     struct element *wsk, *wsk2;
-    if(lista=NULL)
+    if(lista==NULL)
         return lista;
     wsk=lista;
-    while(lista->i=a)
+    while(lista->i==a)
     {
         lista=lista->next;
         free(wsk);
@@ -231,7 +232,7 @@ struct element *usun(struct element * lista, int a)
 struct element *usunwybrany(struct element * lista, struct element * elem)
 {
     struct element *wsk,*wsk2;
-    if(lista=NULL)
+    if(lista==NULL)
         return lista;
     wsk=lista;
     if(lista==elem)
@@ -240,7 +241,7 @@ struct element *usunwybrany(struct element * lista, struct element * elem)
         free(wsk);
         return lista;
     }
-    while((wsk->next!=NULL)&&(wsk->next!=elem))
+    while(wsk->next!=NULL && wsk->next!=elem)
         wsk=wsk->next;
         if(wsk->next!=NULL)
         {
@@ -249,14 +250,14 @@ struct element *usunwybrany(struct element * lista, struct element * elem)
             free(wsk2);
         }
         return lista;
-    
+
 };
 
 
 struct element * usunwybrany2(struct element *lista, struct element *elem)
 {
     struct element *wsk;
-    if(lista=NULL)
+    if(lista==NULL)
         return lista;
     if(lista==elem)
     {
@@ -272,7 +273,7 @@ struct element * usunwybrany2(struct element *lista, struct element *elem)
         free(wsk);
         return lista;
     }
-    
+    return lista;
 
 };
 
@@ -326,10 +327,179 @@ void dodajodpowiedniozglowa (struct element * lista, struct element * elem,  int
         {wsk->next=elem->next;
         elem->next=wsk;
         }
-        
-    
-    return lista;
+
 }
+
+
+
+void usun_z_glowa(struct element * lista, int a)
+{
+    struct element *wsk;
+    while((lista->next!=NULL && lista->next->i!=a))
+    lista=lista->next;
+    if(lista->next!=NULL)
+    {
+        wsk=lista->next;
+        lista->next=wsk->next;
+        free(wsk);
+    }
+}
+
+void zeruj(struct element *lista)
+{
+    struct element *wsk;
+    wsk=lista;
+    while(wsk!=NULL)
+    {
+        wsk->i=0;
+        wsk=wsk->next;
+    }
+}
+
+void bezwzgledna(struct element *lista)
+{
+
+    while(lista!=NULL)
+    {
+        if(lista->i<0)
+            lista->i=-1*lista->i;
+        lista=lista->next;
+    }
+}
+
+struct trojka{
+unsigned int a,b,c;
+struct trojka *next;
+};
+
+bool czyspelnia(struct trojka *e)
+{
+    if(e->a*e->a+e->b*e->b==e->c*e->c)
+        return true;
+    else
+        return false;
+}
+
+struct trojka * pitagoras(struct trojka * lista)
+{
+    struct trojka *pom,*pom2;
+    while((lista!=NULL)&&(!czyspelnia(lista)))
+    {
+        pom=lista;
+        lista=lista->next;
+        free(pom);
+    }
+    if(lista==NULL)
+        return NULL;
+    pom=lista;
+    while(pom->next!=NULL)
+    {
+        if(czyspelnia(pom->next))
+            pom=pom->next;
+        else
+        {
+            pom2=pom->next;
+            pom->next=pom2->next;
+            free(pom2);
+        }
+
+    }
+    return lista;
+
+}
+
+void wypisztrojki(struct trojka * lista)
+{
+    while(lista!=NULL)
+    {
+    printf("%d, %d, %d, \n",lista->a,lista->b,lista->c);
+    lista=lista->next;
+
+}
+}
+struct trojka *utworztrojka()
+{
+    return NULL;
+};
+
+struct trojka *dodajnakoniectrojki(struct trojka *lista, unsigned int x, unsigned int y, unsigned int z)
+{
+    struct trojka *wsk;
+    if(lista==NULL)
+        lista=wsk=malloc(sizeof(struct trojka));
+    else
+    {
+        wsk=lista;
+        while(wsk->next!=NULL)
+        {
+            wsk=wsk->next;
+        }
+        wsk->next=malloc(sizeof(struct trojka));
+        wsk=wsk->next;
+    }
+    wsk->a=x;
+    wsk->b=y;
+    wsk->c=z;
+    wsk->next=NULL;
+    return lista;
+};
+
+int suma(struct element *lista)
+{
+    int sum=0;
+    ///z glowa dodajemy tutaj lista=lista->next;
+    while(lista!=NULL)
+    {
+        sum=sum+lista->i;
+        lista=lista->next;
+    }
+    return sum;
+}
+
+int minimumbezglowy(struct element *lista)
+{
+    int min=lista->i;
+    while(lista!=NULL)
+    {
+        if(lista->i<min)
+            min=lista->i;
+        lista=lista->next;
+    }
+    return min;
+}
+
+struct element *odwroc(struct element *lista)
+{
+    struct element *pom1,*pom2;
+    if((lista==NULL)||(lista->next==NULL))
+    return lista;
+    pom1=lista->next;
+    pom2=pom1->next;
+
+    lista->next=NULL;
+    pom1->next=lista;
+    
+    while(pom2!=NULL)
+    {
+        lista=pom1;
+        pom1=pom2;
+        pom2=pom2->next;
+        pom1->next=lista;
+    }
+    return pom1;
+};
+
+
+struct element *konkatenacja(struct element*lista, struct element *lista2)
+{
+    struct element *pom;
+    pom=lista;
+    while(pom->next!=NULL)
+        pom=pom->next;
+    pom->next=lista2;
+    return lista;
+};
+
 
 int main()
 {
@@ -376,7 +546,7 @@ int main()
     R.x=5;
     R.y=6;
     R.z=0;
-    struct punkt tab[3]={P,Q,R};
+
 
     ///7.2.7
     printf("\n\n CW7_2_7\n\n");
@@ -441,23 +611,36 @@ int main()
     ///7.3.6
     printf("\n\n CW7_3_6\n\n");
     ///znajdz
-    
+
     ///7.3.7
     printf("\n\n CW7_3_7\n\n");
     //usun
-    
+
     ///7.3.8
     printf("\n\n CW7_3_8\n\n");
     //usunwybrany
-    
+
     ///7.3.9
     printf("\n\n CW7_3_9\n\n");
-    
+
     ///Z GLOWOM TERAZ BEDZIE
-    
+
     ///7.3.10
     printf("\n\n CW7_3_10 i 11 i 12 i 13 i 14 tez xD\n\n");
-    
-    
+
+    ///7.3.17
+    printf("\n\n CW7_3_17\n\n");
+
+    ///DODATKOWE ZADANIA BEZ GLOWY
+
+    ///7.3.23
+    printf("\n\n CW7_3_23\n\n");
+
+    struct trojka * listatrojek=utworztrojka();
+    dodajnakoniectrojki(listatrojek,1,2,3);
+    wypisztrojki(listatrojek);
+    dodajnakoniectrojki(listatrojek,4,3,5);
+    dodajnakoniectrojki(listatrojek,4,3,3);
+    wypisztrojki(listatrojek);
     return 0;
 }
