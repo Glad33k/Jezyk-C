@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -145,28 +144,28 @@ struct element *dodajnapoczatek(struct element* lista, int a)
 };
 
 
-struct element *dodajnakoniec(struct element* lista, int a)
+struct element *dodajnakoniec(struct element *lista, int a)
 {
-    struct element *wsk;
-    if(lista==NULL)
-    {
-        lista=wsk=malloc(sizeof(struct element));
+
+     struct element *nowy = malloc(sizeof(struct element));
+
+    nowy->i = a;
+    nowy->next = NULL;
+
+    if(lista == NULL){
+        return nowy;
     }
-    else
-    {
-        wsk=lista;
-        while(wsk->next!=NULL)
-        {
-            wsk=wsk->next;
-        }
-        wsk->next=malloc(sizeof(struct element));
-        wsk=wsk->next;
+
+    struct element *wsk = lista;
+    while(wsk->next != NULL){
+        wsk = wsk->next;
     }
-    wsk->i=a;
-    wsk->next=NULL;
+
+    wsk->next = nowy;
     return lista;
 
 };
+
 
 
 void wypiszlista(struct element *lista)
@@ -197,7 +196,7 @@ struct element * dodajodpowiednio(struct element* lista, struct element* elem, i
 
 struct element * znajdz(struct element * lista, int a)
 {
-    while((lista!=NULL)&&(lista->i=a))
+    while((lista!=NULL)&&(lista->i!=a))
     {
         lista=lista->next;
     }
@@ -211,11 +210,12 @@ struct element *usun(struct element * lista, int a)
     if(lista==NULL)
         return lista;
     wsk=lista;
-    while(lista->i==a)
+    if(lista->i==a)
     {
         lista=lista->next;
         free(wsk);
     }
+    else{
     while((wsk->next->i!=a)&&(wsk->next!=NULL))
     {
         wsk=wsk->next;
@@ -225,7 +225,7 @@ struct element *usun(struct element * lista, int a)
         wsk2=wsk->next;
         wsk->next=wsk2->next;
         free(wsk2);
-    }
+    }}
     return lista;
 };
 
@@ -424,23 +424,23 @@ struct trojka *utworztrojka()
 
 struct trojka *dodajnakoniectrojki(struct trojka *lista, unsigned int x, unsigned int y, unsigned int z)
 {
-    struct trojka *wsk;
-    if(lista==NULL)
-        lista=wsk=malloc(sizeof(struct trojka));
-    else
-    {
-        wsk=lista;
-        while(wsk->next!=NULL)
-        {
-            wsk=wsk->next;
-        }
-        wsk->next=malloc(sizeof(struct trojka));
-        wsk=wsk->next;
+    struct trojka *nowy = malloc(sizeof(struct trojka));
+
+    nowy->a=x;
+    nowy->b=y;
+    nowy->c=z;
+    nowy->next=NULL;
+
+    if(lista == NULL){
+        return nowy;
     }
-    wsk->a=x;
-    wsk->b=y;
-    wsk->c=z;
-    wsk->next=NULL;
+
+    struct trojka *wsk = lista;
+    while(wsk->next != NULL){
+        wsk = wsk->next;
+    }
+
+    wsk->next = nowy;
     return lista;
 };
 
@@ -478,7 +478,7 @@ struct element *odwroc(struct element *lista)
 
     lista->next=NULL;
     pom1->next=lista;
-    
+
     while(pom2!=NULL)
     {
         lista=pom1;
@@ -591,16 +591,16 @@ int main()
     ///lista bez glowy
     ///Cw nie mam pojecia ktore juz bo sie zgubilem
     struct element *lista=utworz();
-    //lista=dodajnakoniec(lista,4);
-    //wypiszlista(lista);
-    //lista=dodajnakoniec(lista,15);
-    //wypiszlista(lista);
-    //lista=dodajnakoniec(lista,3);
-    //wypiszlista(lista);
-    //lista=dodajnakoniec(lista,8);
-    //wypiszlista(lista);
-    //lista=dodajnakoniec(lista,10);
-    //wypiszlista(lista);
+    lista=dodajnakoniec(lista,4);
+    wypiszlista(lista);
+    lista=dodajnakoniec(lista,15);
+    wypiszlista(lista);
+    lista=dodajnakoniec(lista,3);
+    wypiszlista(lista);
+    lista=dodajnakoniec(lista,8);
+    wypiszlista(lista);
+    lista=dodajnakoniec(lista,10);
+    wypiszlista(lista);
     lista=dodajnapoczatek(lista,6);
     wypiszlista(lista);
     lista=dodajnakoniec(lista,1);
