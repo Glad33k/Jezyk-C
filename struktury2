@@ -1,0 +1,61 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+
+
+struct element{
+int i;
+struct element *next;
+};
+
+struct element *dodajnapoczatek(struct element* lista, int a)
+{
+    struct element *wsk=malloc(sizeof(struct element));
+    wsk->i=a;
+    wsk->next=lista;
+    return wsk;
+};
+
+void wypiszlista(struct element *lista)
+{
+    while(lista!=NULL)
+    {
+        printf("%d \n",lista->i);
+        lista=lista->next;
+    }
+    printf("\n");
+}
+
+
+void wypisznieparzyste(struct element *lista)
+{
+    while(lista!=NULL)
+    {
+        if(lista->i%2!=0)
+        printf("%d \n",lista->i);
+        lista=lista->next;
+    }
+    printf("\n");
+}
+
+
+
+
+void wypisznieparzysteindeksy(struct element *lista)
+{
+    int a=1;
+    while(lista!=NULL)
+    {
+        if(a%2==0)
+        printf("%d \n",lista->i);
+        lista=lista->next;
+        a++;
+    }
+    printf("\n");
+}
+
+int main()
+{
+
+    return 0;
+}
